@@ -1,0 +1,6 @@
+#ifndef SHAPE_TYPE_HPP
+#define SHAPE_TYPE_HPP
+
+enum ShapeType{SLOT, HOLE, CUTOUT, IRREGULAR, SPECIAL, NONE};
+
+#endif
