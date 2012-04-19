@@ -41,14 +41,14 @@ ShapeType get_shapetype_by_string(const std::string feature_string){
 // Remark
 //    delete the character after '#' and delete the space in the front and in the back of line;
 void deal_string_mark_space(std::string &line){
-	int mark_pos = line.find("#");
+	int mark_pos = (int)line.find("#");
 	if( mark_pos != npos ){
 		line.erase(mark_pos);
 	}
-	int non_space_pos = line.find_first_not_of(" ");
+	int non_space_pos = (int)line.find_first_not_of(" ");
 	line.erase(0, non_space_pos);
-	non_space_pos = line.find_last_not_of(" ")+1;
-	if( non_space_pos != line.length()){
+	non_space_pos = (int)line.find_last_not_of(" ")+1;
+	if( non_space_pos != (int)line.length()){
 		line.erase(non_space_pos);
 	}
 }
@@ -60,11 +60,11 @@ void deal_string_mark_space(std::string &line){
 //    split line by space(' ') and store to split_strings
 void split_string_by_space(const std::string line, std::vector<std::string> &split_strings){
 	int non_space_pos = 0;
-	int space_pos = line.find_first_of(" ");
+	int space_pos = (int)line.find_first_of(" ");
 	while( space_pos != npos){
 		split_strings.push_back(line.substr(non_space_pos, space_pos-non_space_pos));
-		non_space_pos = line.find_first_not_of(" ", space_pos);
-		space_pos = line.find_first_of(" ", non_space_pos);
+		non_space_pos = (int)line.find_first_not_of(" ", space_pos);
+		space_pos = (int)line.find_first_of(" ", non_space_pos);
 	}
 	split_strings.push_back(line.substr(non_space_pos));
 }
@@ -126,7 +126,7 @@ void CADDB::createLookUpTable(){
 			// split the input line and check the item size
 			std::vector<std::string> split_strings;
 			split_string_by_space(line, split_strings);
-			int split_strings_size = split_strings.size();
+			int split_strings_size = (int)split_strings.size();
 			if( split_strings_size < 1){
 				throw xbug("CAD-Features.txt: Wrong format. 1");
 			}
@@ -154,14 +154,14 @@ void CADDB::createLookUpTable(){
 				case CUTOUT:
 					attr.push_back(atof(split_strings.at(3).data()));
 					break;
-				case IRREGULAR:
+				case IRREGULAR:{
 					unsigned num = (unsigned)atoi(split_strings.at(3).data());
 					unsignedAttributes[feature_id] = num;
 					if( split_strings_size != (4+num)){
 						throw xbug("CAD-Features.txt: Wrong format. 4");
 					}
 					std::vector<ShapeType> sattr;
-					for(int i=4,j=0;j<num;++i,++j){
+					for(int i=4,j=0;j<(int)num;++i,++j){
 						ShapeType inner_shape_type = get_shapetype_by_string(split_strings.at(i));
 						if( inner_shape_type == NONE ){
 							throw xbug("CAD-Features.txt: Wrong format. 5");
@@ -170,6 +170,9 @@ void CADDB::createLookUpTable(){
 					}
 					shapetypeAttributes[feature_id] = sattr;
 					break;
+				}
+				default:
+					{}
 			}
 			doubleAttributes[feature_id] = attr;
 		}

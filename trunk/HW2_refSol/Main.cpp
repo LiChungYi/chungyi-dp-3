@@ -61,13 +61,16 @@ void generateNCCommands(Model &md){
 		case SPECIAL:
 			cout << "SPECIAL->" << f->getXLoc() << ":" << f->getYLoc();
 			break;
-		case IRREGULAR:
+		case IRREGULAR:{
 			cout << "IRREGULAR->" << f->getXLoc() << ":" << f->getYLoc() << ":" << ((IrregularFeature*)f)->getNumSegments();
 			vector<ShapeType> tmp = ((IrregularFeature*)f)->getSegments();
-			for(int j=0; j<tmp.size(); ++j) {
+			for(int j=0; j<(int)tmp.size(); ++j) {
 				cout << ":" << getShape(tmp[j]);
 			}
-			break;			
+			break;	
+		}
+		default:
+			{}
 		}
 		cout << endl;
 	}

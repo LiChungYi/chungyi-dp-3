@@ -33,6 +33,8 @@ Model::Model(std::string modelName, Imp* imp)
 			case SPECIAL:
 				f = new SpecialFeature(model_no, iter->second, imp) ;
 				break;
+			default:
+				{}
 		}
 		features.push_back(f) ;
 	}
@@ -40,7 +42,7 @@ Model::Model(std::string modelName, Imp* imp)
 
 int Model::getNumElements() 
 {
-	return features.size() ;
+	return (int)features.size() ;
 }
 	
 std::string Model::getModelName() 
@@ -55,17 +57,15 @@ int Model::getModelNum()
 
 Feature* Model::getFeature(int index) 
 {
-	if( index < features.size()) {
+	if( index < (int)features.size()) {
 		return features[index] ;
 	}
-	else {
-		return NULL ;
-	}
+	return NULL ;
 }
 
 void Model::setFeature(int index, Feature * f) 
 {
-	if( index < features.size()) {
+	if( index < (int)features.size()) {
 		features[index] = f ;
 	}
 }

@@ -32,11 +32,13 @@ double V1Imp::getXLoc(int modelNum, int elemNum)
 			return V1GetXforCutout(modelNum, featureID);	
 			break;
 		case IRREGULAR:
-            return V1GetXforIrregular(modelNum, featureID);
+			return V1GetXforIrregular(modelNum, featureID);
 			break;
-        case SPECIAL:
-            return V1GetXforSpecial(modelNum, featureID);
+        	case SPECIAL:
+			return V1GetXforSpecial(modelNum, featureID);
 			break;
+		default:
+			return 0;
 	}	
 }
 
@@ -55,11 +57,13 @@ double V1Imp::getYLoc(int modelNum, int elemNum)
 			return V1GetYforCutout(modelNum, featureID);	
 			break;
 		case IRREGULAR:
-            return V1GetYforIrregular(modelNum, featureID);
+	  		return V1GetYforIrregular(modelNum, featureID);
 			break;
-        case SPECIAL:
-            return V1GetYforSpecial(modelNum, featureID);
+	        case SPECIAL:
+        		return V1GetYforSpecial(modelNum, featureID);
 			break;
+		default:
+			return 0;
 	}
 }
 
