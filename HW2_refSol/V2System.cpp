@@ -32,6 +32,8 @@ OOGModel::OOGModel(std::string _model_name){
 			case SPECIAL:
 				features.push_back(new OOGSpecial(model_no, feature_id));
 				break;
+			default:
+				{}
 		}
 	}
 }

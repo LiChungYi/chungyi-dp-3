@@ -3,6 +3,7 @@
 
 #include <utility>
 #include <vector>
+#include <string>
 //#include <algorithm>
 #include "ShapeType.hpp"
 
