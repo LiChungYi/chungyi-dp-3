@@ -37,6 +37,9 @@ double V1Imp::getXLoc(int modelNum, int elemNum)
         	case SPECIAL:
 			return V1GetXforSpecial(modelNum, featureID);
 			break;
+		case TRIANGLE:
+			return V1GetXforTriangle(modelNum, featureID); 
+			break;
 		default:
 			return 0;
 	}	
@@ -61,6 +64,9 @@ double V1Imp::getYLoc(int modelNum, int elemNum)
 			break;
 	        case SPECIAL:
         		return V1GetYforSpecial(modelNum, featureID);
+			break;
+		case TRIANGLE:
+			return V1GetYforTriangle(modelNum, featureID);
 			break;
 		default:
 			return 0;
@@ -128,4 +134,11 @@ std::vector<std::pair<ShapeType, int> > V1Imp::getList(int modelNum)
 		list.push_back(listelem);	/* Add it to vector list */
 	}
 	return list;
+}
+
+std::vector<std::pair<double, double> > V1Imp::getVertexes(int modelNum, int elemNum){
+	if(V1GetType(modelNum, elemNum) == TRIANGLE)
+		return V1GetVertexesforTriangle(modelNum, V1GetID(modelNum, elemNum));
+	else
+		throw xbug("Type Error");
 }

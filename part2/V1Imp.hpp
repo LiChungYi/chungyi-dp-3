@@ -23,6 +23,7 @@ public:
 	unsigned getNumSegments(int, int);
 	std::vector<ShapeType> getSegments(int, int);
 	std::vector<std::pair<ShapeType, int> > getList(int);
+	std::vector<std::pair<double, double> > getVertexes(int, int);
 private:
 	//V1Facade *facade;
 };
