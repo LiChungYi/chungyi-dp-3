@@ -5,6 +5,7 @@
 #include "xbug.hpp"
 #include "Feature.hpp"
 #include "Imp.hpp"
+#include "Factory.hpp"
 #include <string>
 #include <vector>
 
@@ -16,7 +17,7 @@ private:
 	int model_no ;
 	//int num_element ;
 public:
-	Model(std::string model_name, Imp* imp) ;
+	Model(std::string model_name, Factory* factory) ;
 	int getNumElements() ;
 	std::string getModelName() ;
 	int getModelNum() ;

@@ -3,6 +3,7 @@
 #include "xbug.hpp"
 #include "V1Imp.hpp"
 #include "V2Imp.hpp"
+#include "Factory.hpp"
 #include <map>
 #include <algorithm>
 
@@ -78,7 +79,8 @@ void generateNCCommands(Model &md){
 
 int main(){
 	try{
-		Model md("testModel", new V1Imp);
+		Imp* imp = new V1Imp;
+		Model md("testModel", new Factory(imp));
 		expertSystem(md);
 		generateNCCommands(md);
 	}catch(xbug xb){
