@@ -83,3 +83,11 @@ std::vector<std::pair<ShapeType, int> > V2Imp::getList(int)
 	}
 	return list;
 }
+std::vector<std::pair<double, double> > V2Imp::getVertexes(int modelNum, int elemNum)
+{
+	OOGFeature* tmp = oog->getElement(elemNum);
+	if(tmp->myType() == TRIANGLE)
+		return ((OOGTriangle*)tmp)->getVertexes();
+	else
+		throw xbug("Type Error");
+}

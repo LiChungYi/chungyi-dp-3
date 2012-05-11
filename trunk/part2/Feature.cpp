@@ -132,6 +132,5 @@ double TriangleFeature::getYLoc()
     return imp->getYLoc(model_no, feature_index);
 }
 std::vector<std::pair<double, double> > TriangleFeature::getVertexes(){
-	std::vector<std::pair<double, double> > tmp;
-	return tmp;
+	return imp->getVertexes(model_no, feature_index);
 }

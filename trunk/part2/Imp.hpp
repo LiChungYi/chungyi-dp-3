@@ -20,5 +20,6 @@ public:
 	virtual unsigned getNumSegments(int, int) = 0;
 	virtual std::vector<ShapeType> getSegments(int, int) = 0;
 	virtual std::vector< std::pair<ShapeType, int> > getList(int) = 0;
+	virtual std::vector<std::pair<double, double> > getVertexes(int, int) = 0;
 } ;
 #endif
