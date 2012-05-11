@@ -17,12 +17,12 @@ private:
 	int model_no ;
 	//int num_element ;
 public:
-	Model(std::string model_name, Factory* factory) ;
+	Model(std::string model_name, Imp* imp) ;
 	int getNumElements() ;
 	std::string getModelName() ;
 	int getModelNum() ;
 	Feature * getFeature(int index) ;
-	void setFeature(int index, Feature * f) ;
+	void setFeature(int index, Feature* f) ;
 } ;
 
 #endif

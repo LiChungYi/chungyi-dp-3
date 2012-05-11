@@ -3,7 +3,6 @@
 #include "xbug.hpp"
 #include "V1Imp.hpp"
 #include "V2Imp.hpp"
-#include "Factory.hpp"
 #include <map>
 #include <algorithm>
 
@@ -97,7 +96,7 @@ int main(){
 		Imp* imp[2] = {new V1Imp, new V2Imp};
 		const char* name[] = {"testModel", "slot_Hole", "slot_Hole_Triangle"};
 		for(int i = 0; i < 3; ++i){
-			Model md(name[i], new Factory(imp[0]));
+			Model md(name[i], imp[0]);
 			expertSystem(md);
 			generateNCCommands(md);
 			cout << endl;

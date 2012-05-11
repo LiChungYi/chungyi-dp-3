@@ -4,18 +4,19 @@
 #include "xbug.hpp"
 #include <iostream>
 
-Model::Model(std::string modelName, Factory* factory)
+Model::Model(std::string modelName, Imp* imp)
 {
 	model_name = modelName;
-	model_no = factory->OpenModel(model_name);
+	model_no = imp->OpenModel(model_name);
 	if( model_no == 0){
 			throw xbug("Model: Model "+model_name+" not exists.");
 	}
-    std::vector< std::pair<ShapeType, int> > list = factory->getList(model_no);
+    std::vector< std::pair<ShapeType, int> > list = imp->getList(model_no);
 
+	Factory* factory = Factory::getInstance();
 	for(std::vector< std::pair<ShapeType, int> >::iterator iter = list.begin(); iter != list.end(); iter++)
     {
-		Feature* f = factory->generate(iter, model_no);
+		Feature* f = factory->generate(iter, model_no, imp);
 		features.push_back(f) ;
 	}
 }
