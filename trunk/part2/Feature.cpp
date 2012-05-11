@@ -7,9 +7,20 @@ Feature::Feature(int modelNo, int featureIndex, Imp *impFeature):
     imp(impFeature)
 {}
 
+void Feature::setAttribute(int m, int f, Imp *i)
+{
+	model_no = m;
+	feature_index = f;
+	imp = i;
+}
+
 SlotFeature::SlotFeature(int modelNo, int featureIndex, Imp *impFeature):
     Feature(modelNo, featureIndex, impFeature)
 {}
+
+Feature* SlotFeature::clone(){
+	return new SlotFeature(*this);
+}
 
 ShapeType SlotFeature::featureType()
 {
@@ -32,6 +43,9 @@ double SlotFeature::getLength()
 HoleFeature::HoleFeature(int modelNo, int featureIndex, Imp *impFeature):
     Feature(modelNo, featureIndex, impFeature)
 {}
+Feature* HoleFeature::clone(){
+	return new HoleFeature(*this);
+}
 
 ShapeType HoleFeature::featureType()
 {
@@ -54,6 +68,9 @@ double HoleFeature::getDiameter()
 CutoutFeature::CutoutFeature(int modelNo, int featureIndex, Imp *impFeature):
     Feature(modelNo, featureIndex, impFeature)
 {}
+Feature* CutoutFeature::clone(){
+	return new CutoutFeature(*this);
+}
 
 ShapeType CutoutFeature::featureType()
 {
@@ -76,6 +93,9 @@ double CutoutFeature::getOperations()
 IrregularFeature::IrregularFeature(int modelNo, int featureIndex, Imp *impFeature):
     Feature(modelNo, featureIndex, impFeature)
 {}
+Feature* IrregularFeature::clone(){
+	return new IrregularFeature(*this);
+}
 
 ShapeType IrregularFeature::featureType()
 {
@@ -102,6 +122,9 @@ std::vector<ShapeType> IrregularFeature::getSegments()
 SpecialFeature::SpecialFeature(int modelNo, int featureIndex, Imp *impFeature):
     Feature(modelNo, featureIndex, impFeature)
 {}
+Feature* SpecialFeature::clone(){
+	return new SpecialFeature(*this);
+}
 
 ShapeType SpecialFeature::featureType()
 {
@@ -116,9 +139,13 @@ double SpecialFeature::getYLoc()
     return imp->getYLoc(model_no, feature_index);
 }
 
+
 TriangleFeature::TriangleFeature(int modelNo, int featureIndex, Imp *impFeature):
     Feature(modelNo, featureIndex, impFeature)
 {}
+Feature* TriangleFeature::clone(){
+	return new TriangleFeature(*this);
+}
 ShapeType TriangleFeature::featureType()
 {
     return TRIANGLE;
